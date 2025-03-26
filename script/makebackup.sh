@@ -2,7 +2,9 @@
 clear
 echo "Making Backup"
 read -p "Enter file or directory " source
-read -p "Enter backup location" dis
+read -p "Enter backup location" des
+backup="$des/backup"
+mkdir "$backup"
 
 if [[ ! -e "$source" ]]; then
 	echo -n "Error: '$source' Source does not exist"
@@ -11,8 +13,8 @@ fi
 
 if [[ -f "$source" ]]; then
 	echo "backing up file"
-	cp -v "$source" "$dir"
+	cp -v "$source" "$backup"
 elif [[ -d "$source" ]]; then
 	echo "backing up a directory" 
-	cp -rv "$source" "$dir"
+	cp -rv "$source" "$backup"
 fi
